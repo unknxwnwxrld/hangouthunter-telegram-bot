@@ -8,7 +8,6 @@ from aiogram_dialog import DialogManager, StartMode
 
 from locales import Lexicon
 from states.setup_state import Processing
-from utils.ai_logic import get_recommendations
 from utils.ai_responce_parser import parse_ai_response
 
 router = Router()
