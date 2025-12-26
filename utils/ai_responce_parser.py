@@ -4,16 +4,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Venue:
-    """
-    Модель заведения для отображения в диалогах.
-
-    Хранит основные данные о заведении и предоставляет методы
-    для человекочитаемого представления и форматирования карточки.
-    """
     name: str
     cuisine: str
     why_visit: str
-    address_hint: str = "Район не указан"  # значение по умолчанию
+    address_hint: str = "No information"  # значение по умолчанию
 
     def __str__(self):
         return f"{self.name} ({self.cuisine}) — {self.why_visit}"
@@ -28,12 +22,6 @@ class Venue:
         )
 
 async def parse_ai_response(data: dict) -> List[Venue]:
-    """
-    Разбирает уже распарсенный JSON-ответ от AI и преобразует его в список объектов Venue.
-    В случае любой ошибки возвращает пустой список.
-    :param data: dict из response.json()
-    :return: список объектов Venue
-    """
     try:
         venues_data = data.get("venues", [])
 

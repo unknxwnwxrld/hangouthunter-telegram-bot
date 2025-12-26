@@ -34,16 +34,6 @@ async def on_prev(callback: CallbackQuery, button: Button, manager: DialogManage
     manager.dialog_data["current_index"] = new_index
 
 async def get_venue_data(dialog_manager: DialogManager, **kwargs):
-    """
-    Формирует данные для отображения карточки заведения в диалоге.
-
-    - Инициализирует список заведений и текущий индекс при первом вызове
-    - Возвращает текст карточки, счётчик прогресса и флаг наличия данных
-    - Зацикливает навигацию по списку заведений
-
-    :param dialog_manager: менеджер состояния диалога
-    :return: словарь с данными для окна диалога
-    """
     # Инициализация данных диалога при первом входе
     if "venues" not in dialog_manager.dialog_data:
         start_venues = dialog_manager.start_data.get("venues", [])
