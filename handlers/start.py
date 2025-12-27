@@ -17,7 +17,9 @@ router = Router()
 @router.message(CommandStart())
 async def start(message: Message, state: FSMContext):
     await state.set_state(StartPool.language)
-    await message.answer("🌍 Choose language / Выберите язык / Оберіть мову:", reply_markup=get_language_keyboard())
+    lang = message.from_user.language_code
+    await state.update_data(lang=lang)
+    await message.answer(Lexicon.get(Lexicon.START_MESSAGE, lang), reply_markup=get_language_keyboard())
 
 @router.callback_query(StartPool.language, F.data.startswith("lang_"))
 async def language_choosen(callback_query: CallbackQuery, state: FSMContext):
